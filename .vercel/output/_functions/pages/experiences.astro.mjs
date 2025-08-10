@@ -1,12 +1,12 @@
 /* empty css                                 */
-import { e as createAstro, f as createComponent, m as maybeRenderHead, h as addAttribute, u as unescapeHTML, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_Cf9Qz-m3.mjs';
+import { e as createComponent, f as createAstro, m as maybeRenderHead, h as addAttribute, u as unescapeHTML, r as renderTemplate, k as renderComponent } from '../chunks/astro/server_CU4e26KM.mjs';
 import 'kleur/colors';
 import 'clsx';
 /* empty css                                       */
-import { $ as $$Layout } from '../chunks/Layout_BoYHI8Vx.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DcXrUHbK.mjs';
 export { renderers } from '../renderers.mjs';
 
-const $$Astro = createAstro("https://sidharthmohanty.com");
+const $$Astro = createAstro();
 const $$Experience = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Experience;
