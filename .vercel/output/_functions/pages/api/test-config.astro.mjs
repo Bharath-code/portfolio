@@ -1,4 +1,4 @@
-import { s as spotifyConfig } from '../../chunks/env_C7bWCZfw.mjs';
+import { s as spotifyConfig } from '../../chunks/env_BKky4Z1F.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async () => {

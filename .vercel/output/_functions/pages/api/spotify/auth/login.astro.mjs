@@ -1,4 +1,4 @@
-import { g as getSpotifyRedirectUri, s as spotifyConfig } from '../../../../chunks/env_C7bWCZfw.mjs';
+import { g as getSpotifyRedirectUri, s as spotifyConfig } from '../../../../chunks/env_BKky4Z1F.mjs';
 export { renderers } from '../../../../renderers.mjs';
 
 const GET = async ({ url }) => {
@@ -22,7 +22,7 @@ const GET = async ({ url }) => {
       status: 302,
       headers: {
         "Location": authUrl.toString(),
-        "Set-Cookie": `spotify_auth_state=${state}; HttpOnly; SameSite=Lax; Max-Age=600`
+        "Set-Cookie": `spotify_auth_state=${state}; HttpOnly; SameSite=None; Secure; Max-Age=600`
       }
     });
   } catch (error) {

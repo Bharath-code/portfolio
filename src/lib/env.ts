@@ -1,33 +1,5 @@
 // Environment configuration for Spotify API
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
-
-// Manually parse .env file since process.env is not loading
-function parseEnvFile() {
-  try {
-    const envPath = resolve(process.cwd(), '.env');
-    const envContent = readFileSync(envPath, 'utf-8');
-    const envVars: Record<string, string> = {};
-    
-    envContent.split('\n').forEach(line => {
-      const trimmed = line.trim();
-      if (trimmed && !trimmed.startsWith('#')) {
-        const [key, ...valueParts] = trimmed.split('=');
-        const cleanKey = key.trim();
-        if (cleanKey && valueParts.length > 0) {
-          envVars[cleanKey] = valueParts.join('=').trim();
-        }
-      }
-    });
-    
-    return envVars;
-  } catch (error) {
-    console.error('Error loading .env file:', error);
-    return {};
-  }
-}
-
-const envVars = parseEnvFile();
+const envVars = process.env;
 
 export const spotifyConfig = {
   clientId: envVars.SPOTIFY_CLIENT_ID || '',

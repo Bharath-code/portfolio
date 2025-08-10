@@ -1,4 +1,4 @@
-import { S as SpotifyService, a as SpotifyErrorHandler } from '../../chunks/spotify-service_Dd6WKZFH.mjs';
+import { S as SpotifyService, a as SpotifyErrorHandler } from '../../chunks/spotify-service_rIm4BSNt.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async () => {

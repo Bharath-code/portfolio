@@ -1,4 +1,4 @@
-import { g as getSpotifyRedirectUri, s as spotifyConfig } from '../../../../chunks/env_C7bWCZfw.mjs';
+import { g as getSpotifyRedirectUri, s as spotifyConfig } from '../../../../chunks/env_BKky4Z1F.mjs';
 export { renderers } from '../../../../renderers.mjs';
 
 const GET = async ({ url, request }) => {
@@ -209,7 +209,7 @@ const GET = async ({ url, request }) => {
       headers: {
         "Content-Type": "text/html",
         // Clear the state cookie
-        "Set-Cookie": "spotify_auth_state=; HttpOnly; SameSite=Lax; Max-Age=0"
+        "Set-Cookie": "spotify_auth_state=; HttpOnly; SameSite=None; Secure; Max-Age=0"
       }
     });
     return response;
