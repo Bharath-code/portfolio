@@ -9,7 +9,7 @@ export default defineConfig({
   output: "server",
   adapter: vercel({
     functionPerRoute: false,
-    isr: false
+    isr: false,
   }),
   integrations: [tailwind()],
   vite: {
