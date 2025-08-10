@@ -1,0 +1,147 @@
+---
+---
+
+<div class="spotify-widget">
+  <div class="spotify-content">
+    <h3>Currently Playing</h3>
+    <div id="spotify-currently-playing" class="spotify-info">
+      <p class="spotify-loading">Loading...</p>
+    </div>
+    <button id="spotify-connect-btn" class="spotify-btn">
+      <svg class="spotify-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.84-.179-.84-.6 0-.359.24-.66.54-.78 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.021zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.16 8.82 8.4 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.021 11.28-1.8 16.081-.96.479.12.779.601.6 1.141-.18.42-.78.72-1.22.54z"/>
+      </svg>
+      Connect to Spotify
+    </button>
+  </div>
+</div>
+
+<style>
+.spotify-widget {
+  background: linear-gradient(135deg, #1db954, #191414);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: white;
+  margin: 2rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.spotify-content h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.spotify-info {
+  margin-bottom: 1rem;
+}
+
+.spotify-loading {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.spotify-track {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spotify-track-info {
+  flex: 1;
+}
+
+.spotify-track-name {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.spotify-artist-name {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.spotify-btn {
+  background: #1db954;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.spotify-btn:hover {
+  background: #1ed760;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(29, 185, 84, 0.3);
+}
+
+.spotify-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.spotify-error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const connectBtn = document.getElementById('spotify-connect-btn') as HTMLButtonElement;
+  const currentlyPlaying = document.getElementById('spotify-currently-playing') as HTMLDivElement;
+
+  if (!connectBtn || !currentlyPlaying) return;
+
+  // Check if Spotify is already connected
+  try {
+    const response = await fetch('/api/spotify/status');
+    const data = await response.json();
+    
+    if (data.configured && data.hasTokens) {
+      loadCurrentlyPlaying();
+      connectBtn.style.display = 'none';
+    } else {
+      setupConnectButton();
+    }
+  } catch (error) {
+    setupConnectButton();
+  }
+
+  function setupConnectButton() {
+    connectBtn.addEventListener('click', () => {
+      window.location.href = '/api/spotify/auth';
+    });
+  }
+
+  async function loadCurrentlyPlaying() {
+    try {
+      const response = await fetch('/api/spotify');
+      const data = await response.json();
+      
+      if (data.data?.currentlyPlaying?.item) {
+        const track = data.data.currentlyPlaying.item;
+        currentlyPlaying.innerHTML = `
+          <div class="spotify-track">
+            <div class="spotify-track-info">
+              <div class="spotify-track-name">${track.name}</div>
+              <div class="spotify-artist-name">${track.artists.map((a: { name: string }) => a.name).join(', ')}</div>
+            </div>
+          </div>
+        `;
+      } else {
+        currentlyPlaying.innerHTML = '<p class="spotify-error">No track currently playing</p>';
+      }
+    } catch (error) {
+      currentlyPlaying.innerHTML = '<p class="spotify-error">Failed to load music data</p>';
+    }
+  }
+});
+</script>
