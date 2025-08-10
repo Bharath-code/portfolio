@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { spotifyConfig, getSpotifyRedirectUri } from '../../../../lib/env.js';
+import { spotifyConfig, getSpotifyRedirectUri } from '../../../../lib/env';
 
 export const GET: APIRoute = async ({ url }) => {
     try {
