@@ -227,7 +227,7 @@ export const GET: APIRoute = async ({ url, request }) => {
             headers: {
                 'Content-Type': 'text/html',
                 // Clear the state cookie
-                'Set-Cookie': 'spotify_auth_state=; HttpOnly; SameSite=Lax; Max-Age=0',
+                'Set-Cookie': 'spotify_auth_state=; HttpOnly; SameSite=None; Secure; Max-Age=0',
             },
         });
 

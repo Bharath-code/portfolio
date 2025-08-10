@@ -31,7 +31,7 @@ export const GET: APIRoute = async ({ url }) => {
             status: 302,
             headers: {
                 'Location': authUrl.toString(),
-                'Set-Cookie': `spotify_auth_state=${state}; HttpOnly; SameSite=Lax; Max-Age=600`,
+                'Set-Cookie': `spotify_auth_state=${state}; HttpOnly; SameSite=None; Secure; Max-Age=600`,
             },
         });
     } catch (error) {
