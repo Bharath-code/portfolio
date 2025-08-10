@@ -10,5 +10,10 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
-  integrations: [tailwind()]
+  integrations: [tailwind()],
+  vite: {
+    server: {
+      allowedHosts: ['e3f27b84c375.ngrok-free.app']
+    }
+  }
 });

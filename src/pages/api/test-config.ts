@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { spotifyConfig } from '../../../lib/env.js';
+import { spotifyConfig } from '../../lib/env';
 
 export const GET: APIRoute = async () => {
   return new Response(
