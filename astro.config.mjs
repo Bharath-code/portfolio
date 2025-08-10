@@ -7,7 +7,10 @@ import vercel from "@astrojs/vercel"
 export default defineConfig({
   site: "https://sidharthmohanty.com",
   output: "server",
-  adapter: vercel(),
+  adapter: vercel({
+    functionPerRoute: false,
+    isr: false
+  }),
   integrations: [tailwind()],
   vite: {
     server: {
