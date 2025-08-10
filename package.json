@@ -13,7 +13,7 @@
     "test:ui": "vitest --ui"
   },
   "engines": {
-    "node": ">=18.20.8"
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
