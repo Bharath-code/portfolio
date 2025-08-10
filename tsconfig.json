@@ -1,3 +1,9 @@
 {
+  "include": [
+    "src/**/*",
+    "node_modules/astro/tsconfigs/${configDir}/.astro/types.d.ts",
+    "node_modules/astro/tsconfigs/${configDir}/**/*"
+  ],
+  "exclude": ["node_modules/astro/tsconfigs/${configDir}/dist"],
   "extends": "astro/tsconfigs/strict"
 }
