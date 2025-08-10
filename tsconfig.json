@@ -5,5 +5,5 @@
     "node_modules/astro/tsconfigs/${configDir}/**/*"
   ],
   "exclude": ["node_modules/astro/tsconfigs/${configDir}/dist"],
-  "extends": "astro/tsconfigs/strict"
+  "extends": "./node_modules/astro/tsconfigs/strict"
 }
